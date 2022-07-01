@@ -1,0 +1,4 @@
+const myStr = '<a href="http://www.example.com" target="_blank">Link</a>';
+/* using single quotations on the outermost helps us remove the escape 
+character \" and freely use " on its own.. 
+*/
