@@ -1,0 +1,2 @@
+//Note: you can add while assigning in one line 
+const sum = 10 + 10;

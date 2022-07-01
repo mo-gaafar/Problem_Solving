@@ -1,0 +1,3 @@
+//TIL: let -> variable can only be declared once
+let catName = "Oliver";
+let catSound = "Meow!";
