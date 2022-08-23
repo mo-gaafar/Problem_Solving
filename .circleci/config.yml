@@ -13,19 +13,19 @@ jobs:
           name: "bing chilling"
           command: echo "text to output here" > output.txt
       - persist_to_workspace:
-          root: .
+          root: ~/
           paths:
-            - savepath
+            - output.txt
 
   print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
-          at: ./savepath 
+          at: ~/
       - run:
           command: |
-           cat output.txt
+           cat ~/output.txt
 
 
         
