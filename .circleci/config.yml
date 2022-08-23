@@ -22,7 +22,10 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: cat ./output.txt
+      - run: cat ./outputlol.txt
+      - run: 
+          command: echo "bruh it failed"
+          when: on_fail
 
 workflows:
   my_workflow:
