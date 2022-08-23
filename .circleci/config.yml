@@ -2,20 +2,32 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-commands:
-  print_pipeline_id:
-    description: "a command that prints the id of the pipeline"
-    steps:
-      - run: echo ${CIRCLE_WORKFLOW_ID}
-
 jobs:
-  using-command:
+  save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - print_pipeline_id
+      - run: echo "hello world" > ./output.txt
+      - persist_to_workspace:
+          root: .
+          paths:
+            - output.txt
+      - run: 
+          command: echo "bruh it failed"
+          when: on_fail
+
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+          at: .
+      - run: cat ./output.txt
 
 workflows:
   my_workflow:
     jobs:
-      - using-command
+      - save_hello_world_output
+      - print_output_file:
+          requires:
+            - save_hello_world_output
